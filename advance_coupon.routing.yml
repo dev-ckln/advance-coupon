@@ -1,0 +1,30 @@
+advance_coupon.assign_coupon:
+  path: '/admin/marketer/assign_coupon'
+  defaults:
+    _form: '\Drupal\advance_coupon\Form\AssignCouponForm'
+    _title: 'Assign Coupon'
+  requirements:
+    _permission: 'administer_advance_coupon'
+
+advance_coupon.remove_coupon:
+  path: '/advance-coupon/remove/{coupon_id}/{user}'
+  defaults:
+    _controller: '\Drupal\advance_coupon\Controller\AdvanceCouponController::userRemoveCoupon'
+  requirements:
+    _permission: 'administer site configuration'
+
+advance_coupon.view_coupon:
+  path: '/marketers-coupons'
+  defaults:
+    _title: 'Marketers Coupons'
+    _view: 'view.marketers_coupons'
+  requirements:
+    _permission: 'access content'
+
+advance_coupon.assign_coupons_marketer:
+  path: '/admin/assigned-coupons-to-marketer'
+  defaults:
+    _title: 'Assign Coupons'
+    _view: 'view.assigned_coupons_to_marketer'
+  requirements:
+    _permission: 'administer site configuration'

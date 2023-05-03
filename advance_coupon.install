@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Defines advance_coupon module hooks.
+ */
+
+use Drupal\Core\Link;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_uninstall().
+ */
+function advance_coupon_uninstall() {
+
+  // Delete the assigned_coupons view.
+  $view = \Drupal::configFactory()->getEditable('views.view.assigned_coupons');
+  if ($view) {
+    $view->delete();
+  }
+  $view = \Drupal::configFactory()->getEditable('views.view.marketers_coupons');
+  if ($view) {
+    $view->delete();
+  }
+  
+}
+
+/**
+ * Implements hook_menu().
+ */
+function advance_coupon_menu() {
+  $items = [];
+
+  $items['admin/config/system/advance_coupon/remove_field_type'] = [
+    'title' => 'Remove Field Type',
+    'description' => 'This page will allow the user to remove the field type that is preventing Advance Coupon from being uninstalled.',
+    'page callback' => 'advance_coupon_remove_field_type',
+    'access callback' => 'user_access',
+    'access arguments' => ['administer site configuration'],
+    'type' => MENU_CALLBACK,
+  ];
+
+  return $items;
+}
+
+/**
+ * Page callback for removing the field type.
+ */
+function advance_coupon_remove_field_type() {
+  $field_type = 'advance_coupon_field_type';
+  $field_type_storage = FieldStorageConfig::loadByName('field_storage_config', $field_type);
+  if ($field_type_storage) {
+    $field_type_storage->delete();
+  }
+
+  // drupal_set_message(new TranslatableMarkup('The Advance Coupon Field field type has been removed.'));.
+  // Redirect back to the uninstall confirmation page.
+  $url = Url::fromRoute('system.modules_uninstall_confirm', ['module' => 'advance_coupon']);
+  return new RedirectResponse($url->toString());
+}

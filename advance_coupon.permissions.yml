@@ -1,0 +1,4 @@
+administer_advance_coupon:
+  title: 'Administer Advance Coupon'
+  description: 'Allows users to access the Assign Coupon page.'
+  restrict access: true

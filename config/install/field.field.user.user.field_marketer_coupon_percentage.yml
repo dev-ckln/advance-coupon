@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_marketer_coupon_percentage
+  module:
+    - advance_coupon
+    - user
+_core:
+  default_config_hash: 12hj-OlAf131QZvgV65_YWXxKs1SRa28PhTbOWuLjDs
+id: user.user.field_marketer_coupon_percentage
+field_name: field_marketer_coupon_percentage
+entity_type: user
+bundle: user
+label: 'Marketer''s Coupon & Percentage'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    - null
+    - ''
+default_value_callback: ''
+settings:
+  default_value: {  }
+field_type: advance_coupon_field

@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - advance_coupon
+    - user
+_core:
+  default_config_hash: fe2Gdaib-hpIKUIo_2vKM_q5spBDzG8xlhBIA6yzFI4
+id: user.field_marketer_coupon_percentage
+field_name: field_marketer_coupon_percentage
+entity_type: user
+type: advance_coupon_field
+settings:
+  fields:
+    -
+      name: 'Coupon Code'
+      type: commerce_promotion_coupon
+      conf: ''
+    -
+      name: 'Profit Percentage'
+      type: basicfield_text
+      conf: ''
+  fields_count: 2
+  index_field_name: 'Index Field'
+  index_field_hide: 0
+  index_field_pos: 0
+module: advance_coupon
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

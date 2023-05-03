@@ -1,0 +1,8 @@
+name: Advance Coupon
+type: module
+description: Provides advanced features for coupon management.
+core_version_requirement: ^8.8 || ^9 || ^10
+dependencies:
+  - drupal:field
+  - drupal:commerce
+  - drupal:commerce_promotion

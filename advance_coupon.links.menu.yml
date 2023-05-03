@@ -1,0 +1,13 @@
+advance_coupon.assign_coupons_to_marketer:
+  title: 'Assign Coupons'
+  description: 'Assign coupons to marketer'
+  route_name: 'advance_coupon.assign_coupons_marketer'
+  parent: 'commerce.admin_commerce'
+  weight: 100
+
+advance_coupon.view_coupon:
+  title: 'View Coupons'
+  description: 'View your marketers coupons'
+  parent: 'entity.user.canonical'
+  route_name: 'advance_coupon.view_coupon'
+  weight: 100

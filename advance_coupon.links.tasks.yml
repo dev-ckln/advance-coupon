@@ -1,0 +1,6 @@
+advance_coupon.view_coupon:
+  title: 'View Coupons'
+  description: 'View your marketers coupons'
+  route_name: 'advance_coupon.view_coupon'
+  base_route: 'entity.user.canonical'
+  weight: 100

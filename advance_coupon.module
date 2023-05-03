@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Defines advance_coupon module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function advance_coupon_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.advance_coupon':
+      $output = '';
+      $output .= '<h3>' . t('Advance Coupon module') . '</h3>';
+      $output .= '<p>' . t('The Advance Coupon module is compatible with Drupal 8 and above upgraded versions and this module  provides additional functionality for managing coupons and promotions on a Drupal site.<br>
+      The module requires the following dependencies: commerce, commerce_promotion, and fields.   
+      A custom field in user  profile named "Marketer  Coupon & Percentage", which is installed automatically with the module.
+      Two custom views named "Assigned Coupon To Marketers" and "Marketers Coupon", which are installed automatically with the module.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function advance_coupon_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
+
+  $url = Url::fromRoute('advance_coupon.view_coupon');
+  if ($route_name == 'entity.user.canonical') {
+    $data['tabs'][0]['advance_coupon.view_coupon'] = [
+      '#theme' => 'menu_local_task',
+      '#link' => [
+        'title' => t('View Coupons'),
+        'url' => $url,
+        'localized_options' => [
+          'attributes' => [
+            'title' => t('Add content'),
+          ],
+        ],
+      ],
+    ];
+    // The tab we're adding is dependent on a user's access to add content.
+    $cacheability
+      ->addCacheTags([
+        'user.permissions',
+      ]);
+  }
+}
